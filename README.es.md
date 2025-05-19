@@ -4,8 +4,8 @@
 
 - [x] Inicializar proyecto con Vite
 - [x] Añadir linter para TypeScript + React
-- [x] Añadir proyecto en GitHub
-- [ ] Añadir estilos del TodoMVC
+- [x] Subir proyecto a GitHub
+- [x] Añadir estilos del TodoMVC
 - [ ] Listar todos los TODOs
 - [ ] Poder borrar un TODO
 - [ ] Marcar TODO como completado
