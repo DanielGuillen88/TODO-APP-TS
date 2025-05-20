@@ -18,11 +18,10 @@ export default defineConfig([
   },
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-
-  // 👇 Añade aquí el override con reglas personalizadas
   {
     files: ["**/*.{jsx,tsx}"],
     rules: {
+      "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
     },
   },
