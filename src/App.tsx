@@ -22,13 +22,23 @@ const mockTodos = [
 
 const App: React.FC = () => {
 
-  const [ todos ] = useState(mockTodos)
+  const [ todos, setTodos ] = useState(mockTodos)
+
+  const handleRemoveTodo = (id: string) : void => {
+    console.log('Remove todo', id)
+    const newTodos = todos.filter(todo => todo.id !== id)
+    setTodos(newTodos)
+  }
+
 
   return (
     <div className="todoapp">
 
       <h1>TODO MVC</h1>
-      <Todos todos = { todos } />
+      <Todos
+      onRemoveTodo = { handleRemoveTodo }
+      todos = { todos }
+      />
       
     </div>
   )

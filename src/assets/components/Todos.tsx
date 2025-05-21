@@ -3,9 +3,10 @@ import { type ListOfTodos } from "./types"
 
 interface TodosProps {
     todos: ListOfTodos
+    onRemoveTodo: (id: string) => void
 }
 
-export const Todos: React.FC<TodosProps> = ({ todos }) => {
+export const Todos: React.FC<TodosProps> = ({ todos, onRemoveTodo}) => {
 
     return (
 
@@ -19,6 +20,7 @@ export const Todos: React.FC<TodosProps> = ({ todos }) => {
                         id={todo.id}
                         title={todo.title}
                         completed={todo.completed}
+                        onRemoveTodo={onRemoveTodo}
                     />
                 </li>
             ))}
