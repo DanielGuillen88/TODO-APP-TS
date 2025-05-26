@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Todos } from "./assets/components/Todos"
+import { type Todo as TodoType, type TodoId } from "./assets/components/types"
 
 const mockTodos = [
   { id: '1', title: 'Inicializar proyecto con Vite', completed: true },
@@ -7,8 +8,8 @@ const mockTodos = [
   { id: '3', title: 'Subir proyecto a GitHub', completed: true },
   { id: '4', title: 'Añadir estilos del TodoMVC', completed: true },
   { id: '5', title: 'Listar todos los TODOs', completed: true },
-  { id: '6', title: 'Poder borrar un TODO', completed: false },
-  { id: '7', title: 'Marcar TODO como completado', completed: false },
+  { id: '6', title: 'Poder borrar un TODO', completed: true },
+  { id: '7', title: 'Marcar TODO como completado', completed: true },
   { id: '8', title: 'Añadir forma de filtrar TODOs (Footer)', completed: false },
   { id: '9', title: 'Mostrar número de TODOs pendientes (Footer)', completed: false },
   { id: '10', title: 'Añadir forma de borrar todos los TODOs completados', completed: false },
@@ -24,18 +25,34 @@ const App: React.FC = () => {
 
   const [ todos, setTodos ] = useState(mockTodos)
 
-  const handleRemoveTodo = (id: string) : void => {
+  const handleRemoveTodo = ( {id} : TodoId ) : void => {
     console.log('Remove todo', id)
     const newTodos = todos.filter(todo => todo.id !== id)
     setTodos(newTodos)
   }
 
+  const handleCompleteTodo = (
+    { id, completed } : Pick<TodoType, 'id' | 'completed'>
+  ) : void => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          // completed: !completed
+          completed
+        }
+      }
+      return todo
+    })
+    setTodos(newTodos)
+  }
 
   return (
     <div className="todoapp">
 
       <h1>TODO MVC</h1>
       <Todos
+      onToggleCompleteTodo = { handleCompleteTodo }
       onRemoveTodo = { handleRemoveTodo }
       todos = { todos }
       />
