@@ -11,9 +11,9 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ 
     activeCount = 0,
-    // completedCount = 0,
+    completedCount = 0,
     filterSelected,
-    // onClearCompleted,
+    onClearCompleted,
     handleFilterChange
  }) => {
   return (
@@ -27,6 +27,19 @@ export const Footer: React.FC<Props> = ({
             filterSelected={filterSelected}
             onFilterChange={handleFilterChange}
         />
+
+        {
+
+            completedCount > 0 && (
+                <button
+                    className="clear-completed"
+                    onClick={onClearCompleted}
+                >
+                    Limpiar completados
+                </button>
+            )
+        }
+
     </footer>
   )
 }

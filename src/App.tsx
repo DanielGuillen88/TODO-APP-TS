@@ -13,8 +13,8 @@ const mockTodos = [
   { id: '6', title: 'Poder borrar un TODO', completed: true },
   { id: '7', title: 'Marcar TODO como completado', completed: true },
   { id: '8', title: 'Añadir forma de filtrar TODOs (Footer)', completed: true },
-  { id: '9', title: 'Mostrar número de TODOs pendientes (Footer)', completed: false },
-  { id: '10', title: 'Añadir forma de borrar todos los TODOs completados', completed: false },
+  { id: '9', title: 'Mostrar número de TODOs pendientes (Footer)', completed: true },
+  { id: '10', title: 'Añadir forma de borrar todos los TODOs completados', completed: true },
   { id: '11', title: 'Crear Header con input (Header)', completed: false },
   { id: '12', title: 'Crear un TODO (Header)', completed: false },
   { id: '13', title: 'Poder editar el texto de un TODO (Doble click)', completed: false },
@@ -54,6 +54,12 @@ const App: React.FC = () => {
     console.log('Filter changed to', filter)
     setFilterSelected(filter)
   }
+
+const handleClearAllCompleted = () : void => {
+            const newTodos = todos.filter(todo => !todo.completed)
+          setTodos(newTodos)
+      }
+
   const activeCount = todos.filter(todo => !todo.completed).length
   const completedCount = todos.length - activeCount
 
@@ -78,7 +84,7 @@ const App: React.FC = () => {
         completedCount={completedCount}
         filterSelected={filterSelected}
         handleFilterChange={handleFilterChange}
-        onClearCompleted={() => {}}
+        onClearCompleted={handleClearAllCompleted}
         // onClearCompleted={() => {
         //   const newTodos = todos.filter(todo => !todo.completed)
         //   setTodos(newTodos)
