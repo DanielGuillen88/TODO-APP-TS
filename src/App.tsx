@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Todos } from "./assets/components/Todos"
-import { type Todo as TodoType, type TodoId } from "./assets/components/types"
+import { type Todo as TodoType, type TodoId, type FilterValue } from "./assets/components/types"
+import { TODO_FILTERS } from "./consts";
+import Footer from "./assets/components/Footer";
 
 const mockTodos = [
   { id: '1', title: 'Inicializar proyecto con Vite', completed: true },
@@ -10,7 +12,7 @@ const mockTodos = [
   { id: '5', title: 'Listar todos los TODOs', completed: true },
   { id: '6', title: 'Poder borrar un TODO', completed: true },
   { id: '7', title: 'Marcar TODO como completado', completed: true },
-  { id: '8', title: 'Añadir forma de filtrar TODOs (Footer)', completed: false },
+  { id: '8', title: 'Añadir forma de filtrar TODOs (Footer)', completed: true },
   { id: '9', title: 'Mostrar número de TODOs pendientes (Footer)', completed: false },
   { id: '10', title: 'Añadir forma de borrar todos los TODOs completados', completed: false },
   { id: '11', title: 'Crear Header con input (Header)', completed: false },
@@ -24,7 +26,8 @@ const mockTodos = [
 const App: React.FC = () => {
 
   const [ todos, setTodos ] = useState(mockTodos)
-
+  const [ filterSelected, setFilterSelected ] = useState<FilterValue>(TODO_FILTERS.ALL)
+  
   const handleRemoveTodo = ( {id} : TodoId ) : void => {
     console.log('Remove todo', id)
     const newTodos = todos.filter(todo => todo.id !== id)
@@ -47,6 +50,19 @@ const App: React.FC = () => {
     setTodos(newTodos)
   }
 
+  const handleFilterChange = ( filter: FilterValue ) : void => {
+    console.log('Filter changed to', filter)
+    setFilterSelected(filter)
+  }
+  const activeCount = todos.filter(todo => !todo.completed).length
+  const completedCount = todos.length - activeCount
+
+  const filteredTodos = todos.filter(todo => {
+    if (filterSelected === TODO_FILTERS.ACTIVE) return !todo.completed
+    if (filterSelected === TODO_FILTERS.COMPLETED) return todo.completed
+    return todo
+  })
+
   return (
     <div className="todoapp">
 
@@ -54,10 +70,21 @@ const App: React.FC = () => {
       <Todos
       onToggleCompleteTodo = { handleCompleteTodo }
       onRemoveTodo = { handleRemoveTodo }
-      todos = { todos }
+      todos = { filteredTodos }
       />
-      
-    </div>
+
+      <Footer
+        activeCount={activeCount}
+        completedCount={completedCount}
+        filterSelected={filterSelected}
+        handleFilterChange={handleFilterChange}
+        onClearCompleted={() => {}}
+        // onClearCompleted={() => {
+        //   const newTodos = todos.filter(todo => !todo.completed)
+        //   setTodos(newTodos)
+        // }}
+      />
+      </div>
   )
 }
 
