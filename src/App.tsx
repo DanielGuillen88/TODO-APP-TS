@@ -18,7 +18,7 @@ const mockTodos = [
   { id: '10', title: 'Añadir forma de borrar todos los TODOs completados', completed: true },
   { id: '11', title: 'Crear Header con input (Header)', completed: true },
   { id: '12', title: 'Crear un TODO (Header)', completed: true },
-  { id: '13', title: 'Poder editar el texto de un TODO (Doble click)', completed: false },
+  { id: '13', title: 'Poder editar el texto de un TODO (Doble click)', completed: true },
   { id: '14', title: 'Añadir animaciones con AutoAnimate', completed: false },
   { id: '15', title: 'Pasar a Reducer', completed: false },
   { id: '16', title: 'Sincronizar con el backend', completed: false }
@@ -29,12 +29,24 @@ const App: React.FC = () => {
   const [ todos, setTodos ] = useState(mockTodos)
   const [ filterSelected, setFilterSelected ] = useState<FilterValue>(TODO_FILTERS.ALL)
   
+  // añadir
+  const handleAddTodo = ({title}: TodoTitle): void => {
+    const newTodo: TodoType = {
+      title,
+      id: crypto.randomUUID(),
+      completed: false
+    };
+     const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+    console.log('New todo added:', newTodo);
+  };
+  //borrar
   const handleRemoveTodo = ( {id} : TodoId ) : void => {
     console.log('Remove todo', id)
     const newTodos = todos.filter(todo => todo.id !== id)
     setTodos(newTodos)
   }
-
+  // completar
   const handleCompleteTodo = (
     { id, completed } : Pick<TodoType, 'id' | 'completed'>
   ) : void => {
@@ -47,15 +59,29 @@ const App: React.FC = () => {
         }
       }
       return todo
+      // return true
     })
     setTodos(newTodos)
   }
-
+  // actualizar título
+  const handleUpdateTodoTitle = ({ id, title }: { id: string, title: string }) : void => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          title
+        }
+      }
+      return todo
+    })
+    setTodos(newTodos)
+  }
+  // cambiar filtro
   const handleFilterChange = ( filter: FilterValue ) : void => {
-    console.log('Filter changed to', filter)
+    // console.log('Filter changed to', filter)
     setFilterSelected(filter)
   }
-
+// limpiar todos los completados
 const handleClearAllCompleted = () : void => {
             const newTodos = todos.filter(todo => !todo.completed)
           setTodos(newTodos)
@@ -70,17 +96,6 @@ const handleClearAllCompleted = () : void => {
     return todo
   })
 
-  const handleAddTodo = ({title}: TodoTitle): void => {
-    const newTodo: TodoType = {
-      title,
-      id: crypto.randomUUID(),
-      completed: false
-    };
-     const newTodos = [...todos, newTodo];
-    setTodos(newTodos);
-    console.log('New todo added:', newTodo);
-  };
-
   return (
     <div className="todoapp">
 
@@ -89,6 +104,8 @@ const handleClearAllCompleted = () : void => {
       />
 
       <Todos
+      // setCompleted={ handleCompleteTodo }
+      setTitle={ handleUpdateTodoTitle }
       onToggleCompleteTodo = { handleCompleteTodo }
       onRemoveTodo = { handleRemoveTodo }
       todos = { filteredTodos }
