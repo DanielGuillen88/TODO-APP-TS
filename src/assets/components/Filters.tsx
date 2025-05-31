@@ -1,17 +1,12 @@
 import { FILTERS_BUTTONS } from "../../consts";
 import { type FilterValue } from "./types";
 
-interface Props {
-  
-    // filterSelected: typeof TODO_FILTERS[keyof typeof TODO_FILTERS];
-    // filterSelected: keyof typeof TODO_FILTERS;
+interface FiltersProps {  
     filterSelected: FilterValue;
-    // onFilterChange: (filter: keyof typeof TODO_FILTERS) => void;
     onFilterChange: (filter: FilterValue) => void;
-
 }
 
-export const Filters: React.FC<Props> = (
+export const Filters: React.FC<FiltersProps> = (
     { filterSelected, onFilterChange }) => {
   return (
     <ul className="filters">

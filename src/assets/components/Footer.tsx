@@ -1,7 +1,7 @@
 import { Filters } from "./Filters";
 import { type FilterValue } from "./types";
 
-interface Props {
+interface FooterProps {
     activeCount: number;
     completedCount: number;
     filterSelected: FilterValue;
@@ -9,7 +9,7 @@ interface Props {
     handleFilterChange: (filter: FilterValue) => void;
 }
 
-export const Footer: React.FC<Props> = ({ 
+export const Footer: React.FC<FooterProps> = ({ 
     activeCount = 0,
     completedCount = 0,
     filterSelected,
