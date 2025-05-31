@@ -1,10 +1,10 @@
 import { type TodoTitle } from "./types";
 import { useState } from "react";
 
-interface Props {
+interface CreateTodoProps {
     addTodo: (title: TodoTitle) => void;
 }
-export const CreateTodo: React.FC<Props> = ({ addTodo }) => {
+export const CreateTodo: React.FC<CreateTodoProps> = ({ addTodo }) => {
 
     const [ inputValue, setInputValue ] = useState('');
 
@@ -23,6 +23,9 @@ export const CreateTodo: React.FC<Props> = ({ addTodo }) => {
                 value={ inputValue}
                 onChange={(event) => { setInputValue(event.target.value) }}
                 placeholder="¿Que quieres añadir?"
+                onBlur={() => {
+                    setInputValue('');
+                  }} // al salir del campo limpiar  
                 autoFocus
             />
         </form>
