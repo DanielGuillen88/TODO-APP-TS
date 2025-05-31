@@ -18,3 +18,4 @@
 - [ ] Añadir animaciones con AutoAnimate
 - [ ] Pasar a Reducer
 - [ ] Sincronizar con el backend
+- [x] Añadir un modo oscuro funcional
