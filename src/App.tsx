@@ -19,9 +19,10 @@ const mockTodos = [
   { id: '11', title: 'Crear Header con input (Header)', completed: true },
   { id: '12', title: 'Crear un TODO (Header)', completed: true },
   { id: '13', title: 'Poder editar el texto de un TODO (Doble click)', completed: true },
-  { id: '14', title: 'Añadir animaciones con AutoAnimate', completed: false },
+  { id: '14', title: 'Añadir animaciones con AutoAnimate', completed: true },
   { id: '15', title: 'Pasar a Reducer', completed: false },
-  { id: '16', title: 'Sincronizar con el backend', completed: false }
+  { id: '16', title: 'Sincronizar con el backend', completed: false },
+  { id: '17', title: 'Añadir un modo oscuro funcional', completed: true }
 ];
 
 const App: React.FC = () => {

@@ -79,7 +79,7 @@ export const Todo: React.FC<TodoProps> = ({
                 className="destroy"
                 onClick={() => {
                     onRemoveTodo({ id })
-                    console.log('Remove todo', id)
+                    // console.log('Remove todo', id)
                 }}
             />
         </div>
