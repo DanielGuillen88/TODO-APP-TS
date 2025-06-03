@@ -16,6 +16,8 @@
 - [x] Crear un TODO (Header)
 - [x] Poder editar el texto de un TODO (Doble click)
 - [x] Añadir animaciones con AutoAnimate
+- [x] Añadir animaciones con AutoAnimate
+- [x] Añadir un modo oscuro funcional
+- [x] Refactor en app, extraer lógica y hooks
 - [ ] Pasar a Reducer
 - [ ] Sincronizar con el backend
-- [x] Añadir un modo oscuro funcional
