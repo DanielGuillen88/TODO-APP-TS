@@ -1,6 +1,6 @@
 # TODO-APP-TS React + TypeScript + Vite
 
-## 🇪🇸 Versión en Español - Crear un TodoMVC con TypeScript
+## 🇬🇧 Versión en Español - Crear un TodoMVC con TypeScript
 Una aplicación de lista de tareas (Todo List) simple y ordenada construida con React y TypeScript, inspirada en el proyecto TodoMVC. Permite añadir, editar, filtrar y eliminar tareas, con un hook personalizado para separar la lógica.
 
 ## ✅ Funcionalidades Implementadas
