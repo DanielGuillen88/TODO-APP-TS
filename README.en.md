@@ -1,6 +1,6 @@
 # TODO-APP-TS React + TypeScript + Vite
 
-## 🇪🇸 English version
+## 🇬🇧 English version
 A simple and clean Todo List application built with **React** and **TypeScript**, inspired by the TodoMVC project. It supports adding, editing, filtering, and removing tasks, with a custom hook for logic separation.
 
 
